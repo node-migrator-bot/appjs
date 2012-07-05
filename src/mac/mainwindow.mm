@@ -228,10 +228,18 @@ int MainWindow::ScreenHeight() {
 
 void MainWindow::destroy() {
  if (!g_handler.get() || !g_handler->GetBrowserHwnd())
-    NODE_ERROR("Browser window not available or not ready.");
-        
+    NODE_ERROR("Browser window not available or not ready.");  
 
 };
+
+void MainWindow::setV8Handle(Handle<Object> obj) {
+  this->jsObj = obj;
+}
+
+Handle<Object> MainWindow::getV8Handle() {
+  return this->jsObj;
+}
+
 
 } /* appjs */
 
