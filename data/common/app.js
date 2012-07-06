@@ -16,13 +16,22 @@ var windowSettings = {
   disableSecurity:true, // allow cross origin requests
 };
 
-app.on('window_ready',function(){
-  window.show();
-});
-
 app.get('/',function(req,res,next){
   res.send(200,"Hello World!");
 });
 
 var window = app.createWindow("http://appjs/",windowSettings);
 
+window.on("create",function(){
+  console.log("Window Created");
+  // Make window visible
+  this.show();
+});
+
+window.on("ready",function(){
+  console.log("Page loaded.");
+});
+
+window.on('close',function(){
+  console.log("closed");
+})
